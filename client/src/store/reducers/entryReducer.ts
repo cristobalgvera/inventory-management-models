@@ -28,8 +28,5 @@ const resetEntries = ( state: Entry ) => {
 };
 
 const updateEntries = ( state: Entry, payload: EntryPayload ) => {
-    if (payload)
-        return updateState(state, payload);
-
-    return state;
+    return updateState(state, payload);
 };
