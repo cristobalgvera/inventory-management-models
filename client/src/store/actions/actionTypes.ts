@@ -1,0 +1,3 @@
+export enum ENTRY_ACTIONS {
+    RESET_ENTRIES = 'RESET_ENTRIES',
+}
