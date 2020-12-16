@@ -1,0 +1,1 @@
+export { entryReducer, initialEntryState } from './entryReducer';

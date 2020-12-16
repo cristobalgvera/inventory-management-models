@@ -16,6 +16,8 @@ export const entryReducer = ( state: Entry, { payload, type }: EntryActionType )
     switch (type) {
         case 'RESET_ENTRIES':
             return resetEntries(state);
+        case 'UPDATE_ENTRIES':
+            return updateEntries(state, payload);
         default:
             throw new Error(`Type doesn't match any case`);
     }
@@ -23,4 +25,11 @@ export const entryReducer = ( state: Entry, { payload, type }: EntryActionType )
 
 const resetEntries = ( state: Entry ) => {
     return updateState(state, initialEntryState);
+};
+
+const updateEntries = ( state: Entry, payload: EntryPayload ) => {
+    if (payload)
+        return updateState(state, payload);
+
+    return state;
 };

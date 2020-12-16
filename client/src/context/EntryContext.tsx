@@ -1,6 +1,6 @@
 import React, { createContext, Dispatch, FunctionComponent, useReducer } from 'react';
 import { Entry, EntryActionType } from '../store/common/interfaces';
-import { entryReducer, initialEntryState } from '../store/reducers/entryReducer';
+import { entryReducer, initialEntryState } from '../store/reducers';
 
 interface IEntryContext {
     entry: Entry
