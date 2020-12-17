@@ -1,10 +1,6 @@
 import React from 'react';
-import { Routes } from './components';
+import Dashboard from './pages/Dashboard/Dashboard';
 
-function App() {
-    return (
-        <Routes/>
-    );
-}
+const App = () => <Dashboard/>;
 
 export default App;

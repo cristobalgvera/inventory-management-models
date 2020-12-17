@@ -21,8 +21,8 @@ export const useOrder = () => {
         orderSizeFormula,
         resupplyPointFormula,
         revisionIntervalFormula,
-        totalOrdersFormula,
         averageOrderCostFormula,
+        totalOrdersFormula,
         inventoryRotationFormula,
     } = useOrderFormula();
 
@@ -128,7 +128,7 @@ export const useOrder = () => {
         else setInventoryRotation(prevState => updateState(prevState, { value: 0 }));
     }, [annualAverageDemand.value, inventoryRotationFormula, orderSize.value]);
 
-    return {
+    return [
         annualAverageDemand,
         orderSize,
         resupplyPoint,
@@ -136,5 +136,5 @@ export const useOrder = () => {
         averageOrderCost,
         totalOrders,
         inventoryRotation,
-    };
+    ];
 };
