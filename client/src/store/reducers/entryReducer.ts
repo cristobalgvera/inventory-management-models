@@ -9,7 +9,7 @@ export const initialEntryState: Entry = {
     itemCost: 0,
     orderCost: 0,
     periodsNumber: 0,
-    replacementTime: 0,
+    resupplyDuration: 0,
 };
 
 export const entryReducer = ( state: Entry, { payload, type }: EntryActionType ): Entry => {

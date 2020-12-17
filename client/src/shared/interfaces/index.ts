@@ -1,0 +1,1 @@
+export type { IOutput as Output } from './IOutput';

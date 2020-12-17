@@ -5,7 +5,7 @@ export const resetEntries = (): EntryActionType => ({
     payload: {},
 });
 
-export const updateEntries = ( entry: Entry ): EntryActionType => ({
+export const updateEntries = ( entry: Partial<Entry> ): EntryActionType => ({
     type: 'UPDATE_ENTRIES',
     payload: entry,
 });
