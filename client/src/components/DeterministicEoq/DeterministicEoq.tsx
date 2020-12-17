@@ -9,18 +9,22 @@ export const DeterministicEoq = () => {
         resupplyPoint,
         annualAverageDemand,
         orderSize,
+        inventoryRotation,
+        totalOrders,
+        revisionInterval,
+        averageOrderCost,
     } = useOrder();
 
     const handleChange = ( { target: { value, name: property } }: ChangeEvent<HTMLInputElement> ) => {
-        update({ [property]: value });
+        update({ [property]: { value } });
     };
 
     const entryInputs = () => {
-        return Object.entries(entry).map(( [property, value] ) => {
+        return Object.entries(entry).map(( [property, { value, symbology, variableName }] ) => {
             return (
                 <div key={property}>
                     <label htmlFor={property}>
-                        {property}
+                        {variableName}: ({symbology})
                     </label>
                     <input
                         type='number'
@@ -41,7 +45,14 @@ export const DeterministicEoq = () => {
                     {entryInputs()}
                 </form>
             </div>
-            <p>{resupplyPoint.value}</p>
+            <h2>Valores</h2>
+            <p>{annualAverageDemand.variableName} {annualAverageDemand.value} {annualAverageDemand.measurementUnit}</p>
+            <p>{orderSize.variableName} {orderSize.value} {orderSize.measurementUnit}</p>
+            <p>{averageOrderCost.variableName} {averageOrderCost.value} {averageOrderCost.measurementUnit}</p>
+            <p>{resupplyPoint.variableName} {resupplyPoint.value} {resupplyPoint.measurementUnit}</p>
+            <p>{revisionInterval.variableName} {revisionInterval.value} {revisionInterval.measurementUnit}</p>
+            <p>{totalOrders.variableName} {totalOrders.value} {totalOrders.measurementUnit}</p>
+            <p>{inventoryRotation.variableName} {inventoryRotation.value} {inventoryRotation.measurementUnit}</p>
         </div>
     );
 };

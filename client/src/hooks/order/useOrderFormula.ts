@@ -19,7 +19,7 @@ export const useOrderFormula = () => {
      * @param C Item cost.
      */
     const orderSizeFormula = useCallback(( D: number, S: number, i: number, C: number ) => {
-        return Math.sqrt((2 * D * S) / (i * C));
+        return Math.sqrt((2 * D * S) / ((i * C) / 100));
     }, []);
 
     /**
@@ -49,10 +49,18 @@ export const useOrderFormula = () => {
     /**
      * Returns number of orders.
      *
-     * @param D Annual average demand formula.
+     * @param D Annual average demand.
      * @param Q Order size.
      */
-    const totalOrders = useCallback(( D: number, Q: number ) => D / Q, []);
+    const totalOrdersFormula = useCallback(( D: number, Q: number ) => D / Q, []);
+
+    /**
+     * Returns number of orders.
+     *
+     * @param D Annual average demand.
+     * @param Q Order size.
+     */
+    const inventoryRotationFormula = useCallback(( D: number, Q: number ) => (2 * D) / Q, []);
 
     return {
         annualAverageDemandFormula,
@@ -60,7 +68,8 @@ export const useOrderFormula = () => {
         averageOrderCostFormula,
         resupplyPointFormula,
         revisionIntervalFormula,
-        totalOrders,
+        totalOrdersFormula,
+        inventoryRotationFormula,
     };
 
 };

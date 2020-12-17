@@ -7,12 +7,12 @@ import { useOrderFormula } from './useOrderFormula';
 export const useOrder = () => {
     const {
         entry: {
-            averageDemand,
-            periodsNumber,
-            orderCost,
-            resupplyDuration,
-            itemCost,
-            annualStorageCostPercentage,
+            averageDemand: { value: averageDemand },
+            periodsNumber: { value: periodsNumber },
+            orderCost: { value: orderCost },
+            resupplyDuration: { value: resupplyDuration },
+            itemCost: { value: itemCost },
+            annualStorageCostPercentage: { value: annualStorageCostPercentage },
         },
     } = useContext(EntryContext);
 
@@ -21,6 +21,9 @@ export const useOrder = () => {
         orderSizeFormula,
         resupplyPointFormula,
         revisionIntervalFormula,
+        totalOrdersFormula,
+        averageOrderCostFormula,
+        inventoryRotationFormula,
     } = useOrderFormula();
 
     const [annualAverageDemand, setAnnualAverageDemand] = useState<Output>({
@@ -81,10 +84,57 @@ export const useOrder = () => {
         else setRevisionInterval(prevState => updateState(prevState, { value: 0 }));
     }, [averageDemand, orderSize.value, revisionIntervalFormula]);
 
+    const [averageOrderCost, setAverageOrderCost] = useState<Output>({
+        variableName: 'Valor promedio del pedido',
+        symbology: '',
+        formula: 'Q * C',
+        measurementUnit: 'dinero',
+        value: 0,
+    });
+
+    useEffect(() => {
+        setAverageOrderCost(prevState => updateState(prevState, {
+            value: averageOrderCostFormula(orderSize.value, itemCost),
+        }));
+    }, [averageOrderCostFormula, itemCost, orderSize.value]);
+
+    const [totalOrders, setTotalOrders] = useState<Output>({
+        variableName: 'Cantidad de pedidos',
+        symbology: 'N',
+        formula: 'D / Q',
+        measurementUnit: 'pedidos / año',
+        value: 0,
+    });
+
+    useEffect(() => {
+        const value = totalOrdersFormula(annualAverageDemand.value, orderSize.value);
+
+        if (!isNaN(value)) setTotalOrders(prevState => updateState(prevState, { value }));
+        else setTotalOrders(prevState => updateState(prevState, { value: 0 }));
+    }, [annualAverageDemand.value, orderSize.value, totalOrdersFormula]);
+
+    const [inventoryRotation, setInventoryRotation] = useState<Output>({
+        variableName: 'Rotación de inventario',
+        symbology: '',
+        formula: '(2 * D) / Q',
+        measurementUnit: '1 / año',
+        value: 0,
+    });
+
+    useEffect(() => {
+        const value = inventoryRotationFormula(annualAverageDemand.value, orderSize.value);
+
+        if (!isNaN(value)) setInventoryRotation(prevState => updateState(prevState, { value }));
+        else setInventoryRotation(prevState => updateState(prevState, { value: 0 }));
+    }, [annualAverageDemand.value, inventoryRotationFormula, orderSize.value]);
+
     return {
         annualAverageDemand,
         orderSize,
         resupplyPoint,
         revisionInterval,
+        averageOrderCost,
+        totalOrders,
+        inventoryRotation,
     };
 };
