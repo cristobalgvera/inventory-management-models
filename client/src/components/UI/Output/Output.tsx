@@ -1,20 +1,20 @@
 import React from 'react';
-import { makeStyles, Grid, Paper, Table, TableBody, TableCell, TableHead, TableRow } from '@material-ui/core';
+import {
+    Grid,
+    Paper,
+    Table,
+    TableBody,
+    TableCell,
+    TableHead,
+    TableRow,
+} from '@material-ui/core';
 import { IOutput } from '../../../shared/interfaces/IOutput';
 import { Title } from './Title/Title';
+import { useStyles } from '../../../hooks';
 
 interface IProps {
     outputs: IOutput[]
 }
-
-const useStyles = makeStyles(( theme ) => ({
-    paper: {
-        padding: theme.spacing(2),
-        display: 'flex',
-        overflow: 'auto',
-        flexDirection: 'column',
-    },
-}));
 
 export const Output = ( { outputs }: IProps ) => {
     const classes = useStyles();

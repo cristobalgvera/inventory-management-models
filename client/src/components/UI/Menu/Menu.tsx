@@ -40,7 +40,7 @@ const listItems = () => {
             if (name.length > maxLength) itemText = `${itemText.slice(0, maxLength)}...`;
 
             return (
-                <ListItem button key={category}>
+                <ListItem button key={name}>
                     <ListItemIcon>
                         {reduceIcon(category)}
                     </ListItemIcon>
@@ -52,7 +52,7 @@ const listItems = () => {
 };
 
 export const mainMenu = (
-    <div>
+    <>
         {listItems()}
-    </div>
+    </>
 );

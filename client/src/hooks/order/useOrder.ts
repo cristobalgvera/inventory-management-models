@@ -3,10 +3,12 @@ import { useContext, useEffect, useState } from 'react';
 import { updateState } from '../../lib';
 import { EntryContext } from '../../context';
 import { useOrderFormula } from './useOrderFormula';
+import { currencyReducer } from '../../lib/currencyReducer';
 
 export const useOrder = () => {
     const {
         entry: {
+            entryProperties: { currency },
             averageDemand: { value: averageDemand },
             periodsNumber: { value: periodsNumber },
             orderCost: { value: orderCost },
@@ -88,7 +90,7 @@ export const useOrder = () => {
         variableName: 'Valor promedio del pedido',
         symbology: '',
         formula: 'Q * C',
-        measurementUnit: 'dinero',
+        measurementUnit: currencyReducer(currency),
         value: 0,
     });
 

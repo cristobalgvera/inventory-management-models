@@ -1,8 +1,14 @@
 import React from 'react';
 import clsx from 'clsx';
-import { AppBar as MaterialAppBar, Badge, IconButton, Toolbar, Typography } from '@material-ui/core';
-import { Menu as MenuIcon, Notifications as NotificationsIcon } from '@material-ui/icons';
+import {
+    AppBar as MaterialAppBar,
+    IconButton,
+    Toolbar,
+    Typography,
+} from '@material-ui/core';
+import { Menu as MenuIcon } from '@material-ui/icons';
 import { useStyles } from '../../../hooks';
+import { CurrencyMenu } from './CurrencyMenu/CurrencyMenu';
 
 interface IProps {
     open: boolean
@@ -32,13 +38,9 @@ export const AppBar = ( { open, handleDrawerOpen }: IProps ) => {
                     noWrap
                     className={classes.title}
                 >
-                    Dashboard
+                    Calculadora de Inventario
                 </Typography>
-                <IconButton color="inherit">
-                    <Badge badgeContent={1} color="secondary">
-                        <NotificationsIcon/>
-                    </Badge>
-                </IconButton>
+                <CurrencyMenu/>
             </Toolbar>
         </MaterialAppBar>
     );

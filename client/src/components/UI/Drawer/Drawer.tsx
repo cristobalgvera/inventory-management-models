@@ -28,7 +28,9 @@ export const Drawer = ( { open, handleDrawerClose }: IProps ) => {
                 </IconButton>
             </div>
             <Divider/>
-            <List>{mainMenu}</List>
+            <List>
+                {mainMenu}
+            </List>
             <Divider/>
         </MaterialDrawer>
     );

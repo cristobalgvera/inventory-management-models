@@ -5,7 +5,8 @@ import { Entry } from '../store/common/interfaces';
 
 const {
     resetEntries,
-    updateEntries,
+    updateValue,
+    updateCurrency,
 } = EntryActions;
 
 export const useEntry = () => {
@@ -13,10 +14,12 @@ export const useEntry = () => {
 
     const reset = useCallback(() => dispatchEntry(resetEntries()), [dispatchEntry]);
 
-    const update = useCallback(( entry: Partial<Entry> ) => dispatchEntry(updateEntries(entry)), [dispatchEntry]);
+    const updateEntryValue = useCallback(( entry: Partial<Entry> ) => dispatchEntry(updateValue(entry)), [dispatchEntry]);
+
+    const updateEntryCurrency = useCallback(( entry: Partial<Entry> ) => dispatchEntry(updateCurrency(entry)), [dispatchEntry]);
 
     return {
         data: { entry },
-        logic: { reset, update },
+        logic: { reset, updateEntryValue, updateEntryCurrency },
     };
 };

@@ -1,4 +1,6 @@
+import { CURRENCY } from '../../../shared/enum/currency';
 export interface IEntry {
+    entryProperties: EntryProperties
     averageDemand: EntryData
     orderCost: EntryData
     resupplyDuration: EntryData
@@ -12,4 +14,8 @@ interface EntryData {
     symbology: string
     measurementUnit: string
     value: number
+}
+
+interface EntryProperties {
+    currency: CURRENCY,
 }
