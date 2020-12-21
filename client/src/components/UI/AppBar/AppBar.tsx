@@ -38,7 +38,7 @@ export const AppBar = ( { open, handleDrawerOpen }: IProps ) => {
                     noWrap
                     className={classes.title}
                 >
-                    Calculadora de Inventario
+                    Calculadora de Modelos de Gestión de Inventario
                 </Typography>
                 <CurrencyMenu/>
             </Toolbar>

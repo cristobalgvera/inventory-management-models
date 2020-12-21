@@ -2,7 +2,7 @@ import React from 'react';
 import clsx from 'clsx';
 import { Drawer as MaterialDrawer, Divider, IconButton, List } from '@material-ui/core';
 import { ChevronLeft as ChevronLeftIcon } from '@material-ui/icons';
-import { mainMenu } from '../Menu/Menu';
+import { MainMenu } from '../Menu/Menu';
 import { useStyles } from '../../../hooks';
 
 interface IProps {
@@ -29,9 +29,10 @@ export const Drawer = ( { open, handleDrawerClose }: IProps ) => {
             </div>
             <Divider/>
             <List>
-                {mainMenu}
+                <MainMenu/>
             </List>
             <Divider/>
         </MaterialDrawer>
     );
-};
+}
+;

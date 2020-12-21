@@ -11,7 +11,8 @@ import {
     AllInclusive,
 } from '@material-ui/icons/';
 import { menuData } from './Data/menuData';
-import { MODEL_CATEGORY } from '../../../shared/enum';
+import { MODEL_CATEGORY, ROUTES } from '../../../shared/enum';
+import { useHistory } from 'react-router-dom';
 
 const reduceIcon = ( modelCategory: MODEL_CATEGORY ) => {
     switch (modelCategory) {
@@ -32,27 +33,36 @@ const reduceIcon = ( modelCategory: MODEL_CATEGORY ) => {
     }
 };
 
-const listItems = () => {
-    return menuData.map(( { category, models } ) => {
-        return models.map(( { name } ) => {
-            let itemText: string = name;
-            const maxLength = 16;
-            if (name.length > maxLength) itemText = `${itemText.slice(0, maxLength)}...`;
+export const MainMenu = () => {
+    const history = useHistory();
 
-            return (
-                <ListItem button key={name}>
-                    <ListItemIcon>
-                        {reduceIcon(category)}
-                    </ListItemIcon>
-                    <ListItemText primary={itemText}/>
-                </ListItem>
-            );
+    const listItems = () => {
+        return menuData.map(( { category, models } ) => {
+            return models.map(( { name, route } ) => {
+                let itemText: string = name;
+                const maxLength = 16;
+                if (name.length > maxLength) itemText = `${itemText.slice(0, maxLength)}...`;
+
+                const redirect = () => {
+                    console.log(route);
+                    history.push(route);
+                }
+
+                return (
+                    <ListItem button key={name} onClick={() => redirect()}>
+                        <ListItemIcon>
+                            {reduceIcon(category)}
+                        </ListItemIcon>
+                        <ListItemText primary={itemText}/>
+                    </ListItem>
+                );
+            });
         });
-    });
-};
+    };
 
-export const mainMenu = (
-    <>
-        {listItems()}
-    </>
-);
+    return (
+        <>
+            {listItems()}
+        </>
+    );
+};

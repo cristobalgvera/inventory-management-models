@@ -13,15 +13,16 @@ import { Title } from './Title/Title';
 import { useStyles } from '../../../hooks';
 
 interface IProps {
+    title: string
     outputs: IOutput[]
 }
 
-export const Output = ( { outputs }: IProps ) => {
+export const Output = ( { title, outputs }: IProps ) => {
     const classes = useStyles();
     return (
         <Grid item xs={12}>
             <Paper className={classes.paper}>
-                <Title>Valores</Title>
+                <Title>{title}</Title>
                 <Table size="small">
                     <TableHead>
                         <TableRow>
@@ -33,7 +34,15 @@ export const Output = ( { outputs }: IProps ) => {
                         </TableRow>
                     </TableHead>
                     <TableBody>
-                        {outputs.map(( { variableName, measurementUnit, value, formula, symbology } ) => (
+                        {outputs.map((
+                            {
+                                variableName,
+                                measurementUnit,
+                                value,
+                                formula,
+                                symbology,
+                            },
+                        ) => (
                             <TableRow key={variableName}>
                                 <TableCell>{variableName}</TableCell>
                                 <TableCell>{symbology}</TableCell>

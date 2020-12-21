@@ -1,5 +1,5 @@
 import { MenuData } from '../interfaces';
-import { MODEL_CATEGORY } from '../../../../../shared/enum';
+import { MODEL_CATEGORY, ROUTES } from '../../../../../shared/enum';
 import { MODELS_METADATA } from './modelsMetadata';
 
 const EOQ: MenuData = {
@@ -7,18 +7,22 @@ const EOQ: MenuData = {
     models: [
         {
             name: 'EOQ determinístico',
+            route: ROUTES.DETERMINISTIC_EOQ,
             ...MODELS_METADATA.EOQ,
         },
         {
             name: 'EOQ con reabastecimiento no instantáneo (entregas parciales)',
+            route: ROUTES.HOME,
             ...MODELS_METADATA.EOQ,
         },
         {
             name: 'EOQ aleatorio',
+            route: ROUTES.HOME,
             ...MODELS_METADATA.EOQ,
         },
         {
             name: 'EOQ con costo de quiebre',
+            route: ROUTES.HOME,
             ...MODELS_METADATA.EOQ,
         },
     ],
@@ -29,10 +33,12 @@ const PURCHASE: MenuData = {
     models: [
         {
             name: 'Compras conjuntas',
+            route: ROUTES.HOME,
             ...MODELS_METADATA.PURCHASE,
         },
         {
             name: 'Compras conjuntas 3 ítems',
+            route: ROUTES.HOME,
             ...MODELS_METADATA.PURCHASE,
         },
     ],
@@ -43,10 +49,12 @@ const UNIQUE_PURCHASE: MenuData = {
     models: [
         {
             name: 'Compra única con demanda normal',
+            route: ROUTES.HOME,
             ...MODELS_METADATA.UNIQUE_PURCHASE,
         },
         {
             name: 'Compra única con demanda empírica',
+            route: ROUTES.HOME,
             ...MODELS_METADATA.UNIQUE_PURCHASE,
         },
     ],
@@ -57,14 +65,17 @@ const DISCOUNT: MenuData = {
     models: [
         {
             name: 'Descuentos inclusivos',
+            route: ROUTES.HOME,
             ...MODELS_METADATA.DISCOUNT,
         },
         {
             name: 'Descuentos no inclusivos',
+            route: ROUTES.HOME,
             ...MODELS_METADATA.DISCOUNT,
         },
         {
             name: 'Descuentos por única vez',
+            route: ROUTES.HOME,
             ...MODELS_METADATA.DISCOUNT,
         },
     ],
@@ -75,10 +86,12 @@ const OTHER: MenuData = {
     models: [
         {
             name: 'Modelo Min-Máx',
+            route: ROUTES.HOME,
             ...MODELS_METADATA.OTHER,
         },
         {
             name: 'Modelo sencillo Nmin-Nmáx',
+            route: ROUTES.HOME,
             ...MODELS_METADATA.OTHER,
         },
     ],
@@ -89,6 +102,7 @@ const PERIODIC: MenuData = {
     models: [
         {
             name: 'Revisión periódica',
+            route: ROUTES.HOME,
             ...MODELS_METADATA.PERIODIC,
         },
     ],

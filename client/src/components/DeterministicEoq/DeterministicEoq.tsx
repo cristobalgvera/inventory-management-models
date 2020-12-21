@@ -1,9 +1,17 @@
-import React  from 'react';
+import React from 'react';
 import { useOrder } from '../../hooks';
 import { Output } from '../UI';
+import { useInventory } from '../../hooks/inventory/useInventory';
 
 export const DeterministicEoq = () => {
     const orders = useOrder();
 
-    return orders && <Output outputs={orders}/>;
+    const inventory = useInventory();
+
+    return (
+        <>
+            {orders && <Output title={'Pedidos'} outputs={orders}/>}
+            {inventory && <Output title={'Inventario'} outputs={inventory}/>}
+        </>
+    );
 };

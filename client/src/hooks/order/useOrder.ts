@@ -6,17 +6,7 @@ import { useOrderFormula } from './useOrderFormula';
 import { currencyReducer } from '../../lib/currencyReducer';
 
 export const useOrder = () => {
-    const {
-        entry: {
-            entryProperties: { currency },
-            averageDemand: { value: averageDemand },
-            periodsNumber: { value: periodsNumber },
-            orderCost: { value: orderCost },
-            resupplyDuration: { value: resupplyDuration },
-            itemCost: { value: itemCost },
-            annualStorageCostPercentage: { value: annualStorageCostPercentage },
-        },
-    } = useContext(EntryContext);
+    const { entry: { entryProperties: { currency } } } = useContext(EntryContext);
 
     const {
         annualAverageDemandFormula,
@@ -38,9 +28,9 @@ export const useOrder = () => {
 
     useEffect(() => {
         setAnnualAverageDemand(prevState => updateState(prevState, {
-            value: annualAverageDemandFormula(averageDemand, periodsNumber),
+            value: annualAverageDemandFormula(),
         }));
-    }, [annualAverageDemandFormula, averageDemand, periodsNumber]);
+    }, [annualAverageDemandFormula]);
 
     const [orderSize, setOrderSize] = useState<Output>({
         variableName: 'Tamaño del pedido',
@@ -51,11 +41,10 @@ export const useOrder = () => {
     });
 
     useEffect(() => {
-        const value = orderSizeFormula(annualAverageDemand.value, orderCost, annualStorageCostPercentage, itemCost);
-
-        if (!isNaN(value)) setOrderSize(prevState => updateState(prevState, { value }));
-        else setOrderSize(prevState => updateState(prevState, { value: 0 }));
-    }, [annualAverageDemand.value, annualStorageCostPercentage, itemCost, orderCost, orderSizeFormula]);
+        setOrderSize(prevState => updateState(prevState, {
+            value: orderSizeFormula(),
+        }));
+    }, [orderSizeFormula]);
 
     const [resupplyPoint, setResupplyPoint] = useState<Output>({
         variableName: 'Punto de reordenamiento',
@@ -67,9 +56,9 @@ export const useOrder = () => {
 
     useEffect(() => {
         setResupplyPoint(prevState => updateState(prevState, {
-            value: resupplyPointFormula(averageDemand, resupplyDuration),
+            value: resupplyPointFormula(),
         }));
-    }, [averageDemand, resupplyDuration, resupplyPointFormula]);
+    }, [resupplyPointFormula]);
 
     const [revisionInterval, setRevisionInterval] = useState<Output>({
         variableName: 'Intervalo de revisión',
@@ -80,11 +69,10 @@ export const useOrder = () => {
     });
 
     useEffect(() => {
-        const value = revisionIntervalFormula(orderSize.value, averageDemand);
-
-        if (!isNaN(value)) setRevisionInterval(prevState => updateState(prevState, { value }));
-        else setRevisionInterval(prevState => updateState(prevState, { value: 0 }));
-    }, [averageDemand, orderSize.value, revisionIntervalFormula]);
+        setRevisionInterval(prevState => updateState(prevState, {
+            value: revisionIntervalFormula(),
+        }));
+    }, [revisionIntervalFormula]);
 
     const [averageOrderCost, setAverageOrderCost] = useState<Output>({
         variableName: 'Valor promedio del pedido',
@@ -96,9 +84,9 @@ export const useOrder = () => {
 
     useEffect(() => {
         setAverageOrderCost(prevState => updateState(prevState, {
-            value: averageOrderCostFormula(orderSize.value, itemCost),
+            value: averageOrderCostFormula(),
         }));
-    }, [averageOrderCostFormula, itemCost, orderSize.value]);
+    }, [averageOrderCostFormula]);
 
     const [totalOrders, setTotalOrders] = useState<Output>({
         variableName: 'Cantidad de pedidos',
@@ -109,11 +97,10 @@ export const useOrder = () => {
     });
 
     useEffect(() => {
-        const value = totalOrdersFormula(annualAverageDemand.value, orderSize.value);
-
-        if (!isNaN(value)) setTotalOrders(prevState => updateState(prevState, { value }));
-        else setTotalOrders(prevState => updateState(prevState, { value: 0 }));
-    }, [annualAverageDemand.value, orderSize.value, totalOrdersFormula]);
+        setTotalOrders(prevState => updateState(prevState, {
+            value: totalOrdersFormula(),
+        }));
+    }, [totalOrdersFormula]);
 
     const [inventoryRotation, setInventoryRotation] = useState<Output>({
         variableName: 'Rotación de inventario',
@@ -124,11 +111,10 @@ export const useOrder = () => {
     });
 
     useEffect(() => {
-        const value = inventoryRotationFormula(annualAverageDemand.value, orderSize.value);
-
-        if (!isNaN(value)) setInventoryRotation(prevState => updateState(prevState, { value }));
-        else setInventoryRotation(prevState => updateState(prevState, { value: 0 }));
-    }, [annualAverageDemand.value, inventoryRotationFormula, orderSize.value]);
+        setInventoryRotation(prevState => updateState(prevState, {
+            value: inventoryRotationFormula(),
+        }));
+    }, [inventoryRotationFormula]);
 
     return [
         annualAverageDemand,
