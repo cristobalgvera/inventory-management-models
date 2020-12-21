@@ -3,7 +3,9 @@ import { EntryContext } from '../../context';
 import { useOrderFormula } from '../order/useOrderFormula';
 
 export const useInventoryFormula = () => {
-    const { orderSizeFormula } = useOrderFormula();
+    const {
+        orderSizeFormula,
+    } = useOrderFormula();
 
     const {
         entry: {
@@ -28,7 +30,7 @@ export const useInventoryFormula = () => {
      * Returns average valued inventory ().
      * Optional params.
      *
-     * @param Q Order size
+     * @param Q Order size.
      * @param C Item cost.
      */
     const averageValuedInventoryFormula = useCallback(
@@ -44,7 +46,7 @@ export const useInventoryFormula = () => {
      * Returns maximum inventory ().
      * Optional params.
      *
-     * @param Q Order size
+     * @param Q Order size.
      */
     const maximumInventoryFormula = useCallback(
         (
@@ -57,7 +59,7 @@ export const useInventoryFormula = () => {
      * Returns average valued inventory ().
      * Optional params.
      *
-     * @param Q Order size
+     * @param Q Order size.
      * @param C Item cost.
      */
     const maximumValuedInventoryFormula = useCallback(

@@ -43,7 +43,7 @@ export const useOrderFormula = () => {
             S: number = _S,
             i: number = _i,
             C: number = _C,
-        ) => Math.sqrt((2 * D * S) / ((i * C) / 100)) || 0,
+        ) => Math.sqrt((2 * D * S) / ((i / 100) * C)) || 0,
         [_C, _S, _i, annualAverageDemandFormula],
     );
 

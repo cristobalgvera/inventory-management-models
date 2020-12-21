@@ -11,7 +11,7 @@ import {
     AllInclusive,
 } from '@material-ui/icons/';
 import { menuData } from './Data/menuData';
-import { MODEL_CATEGORY, ROUTES } from '../../../shared/enum';
+import { MODEL_CATEGORY } from '../../../shared/enum';
 import { useHistory } from 'react-router-dom';
 
 const reduceIcon = ( modelCategory: MODEL_CATEGORY ) => {
@@ -43,13 +43,8 @@ export const MainMenu = () => {
                 const maxLength = 16;
                 if (name.length > maxLength) itemText = `${itemText.slice(0, maxLength)}...`;
 
-                const redirect = () => {
-                    console.log(route);
-                    history.push(route);
-                }
-
                 return (
-                    <ListItem button key={name} onClick={() => redirect()}>
+                    <ListItem button key={name} onClick={() => history.push(route)}>
                         <ListItemIcon>
                             {reduceIcon(category)}
                         </ListItemIcon>
