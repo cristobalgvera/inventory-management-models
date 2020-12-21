@@ -20,7 +20,7 @@ export const useCost = () => {
         variableName: 'Costos de ordenamiento',
         symbology: '',
         formula: '(D / Q) * S',
-        measurementUnit: currencyReducer(currency),
+        measurementUnit: `${currencyReducer(currency)} / año`,
         value: 0,
     });
 
@@ -35,7 +35,7 @@ export const useCost = () => {
         variableName: 'Costos de almacenamiento',
         symbology: '',
         formula: '(i * C * Q) / 2',
-        measurementUnit: currencyReducer(currency),
+        measurementUnit: `${currencyReducer(currency)} / año`,
         value: 0,
     });
 
@@ -49,7 +49,7 @@ export const useCost = () => {
         variableName: 'Costo total',
         symbology: 'CT',
         formula: '[(D / Q) * S] + [(i * C * Q) / 2]',
-        measurementUnit: currencyReducer(currency),
+        measurementUnit: `${currencyReducer(currency)} / año`,
         value: 0,
     });
 
